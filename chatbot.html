@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Chat</title>
+  <link rel="stylesheet" href="chatbot.css">
+</head>
+<body>
+  <div class="chat-container">
+    <div class="top-controls">
+      <select id="language" class="language-select">
+        <option value="en">🇬🇧 English</option>
+        <option value="hi">🇮🇳 हिंदी</option>
+      </select>
+
+      <div class="mode-toggle">
+        <label class="toggle-switch">
+          <input type="checkbox" id="themeToggle" />
+          <span class="slider"></span>
+        </label>
+        <span id="modeLabel">🌞 Light</span>
+      </div>
+    </div>
+
+    <div class="output" id="output">Chat output will appear here...</div>
+    <input type="text" id="userInput" placeholder="Type your message..." />
+    <button id="send">🚀 Send</button>
+  </div>
+
+  <script src="chatbot.js"></script>
+</body>
+</html>
