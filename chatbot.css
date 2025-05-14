@@ -1,165 +1,173 @@
-:root {
-    --bg-color: #e0eafc;
-    --card-bg: rgba(255, 255, 255, 0.15);
-    --input-bg: rgba(255, 255, 255, 0.25);
-    --text-color: #000;
-    --btn-bg: linear-gradient(135deg, #007bff, #00c6ff);
-    --btn-hover-bg: linear-gradient(135deg, #0056b3, #0093c9);
-    --border: rgba(255, 255, 255, 0.3);
-    --shadow: rgba(0, 0, 0, 0.2);
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  background-color: #f4f4f4;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem;
+  background-color: #007bff;
+  color: white;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  margin: 20px 0;
+  font-size: 1.8rem;
+  text-align: center;
+  animation: fadeIn 1.2s ease;
+}
+
+.chat-container {
+  width: 90%;
+  max-width: 400px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s;
+  animation: popUp 0.6s ease-out;
+}
+
+.output {
+  min-height: 120px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  overflow-y: auto;
+  background-color: #fafafa;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
   }
-  
-  body.dark-mode {
-    --bg-color: #1e1e2f;
-    --card-bg: rgba(40, 40, 60, 0.6);
-    --input-bg: rgba(60, 60, 90, 0.3);
-    --text-color: #f0f0f0;
-    --btn-bg: linear-gradient(135deg, #2196f3, #6dd5fa);
-    --btn-hover-bg: linear-gradient(135deg, #1976d2, #4db8e6);
-    --border: rgba(255, 255, 255, 0.2);
-    --shadow: rgba(0, 0, 0, 0.6);
+  to {
+      opacity: 1;
+      transform: translateY(0);
   }
-  
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: var(--bg-color);
-    color: var(--text-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    transition: background 0.3s, color 0.3s;
-    backdrop-filter: blur(10px);
+}
+
+@keyframes popUp {
+  0% {
+      opacity: 0;
+      transform: scale(0.95);
   }
-  
-  .chat-container {
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    border-radius: 20px;
-    background: var(--card-bg);
-    box-shadow: 0 8px 24px var(--shadow);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
-    position: relative;
+  100% {
+      opacity: 1;
+      transform: scale(1);
   }
-  
-  .top-controls {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1;
-  }
-  
-  .language-select {
-    background: transparent;
-    color: var(--text-color);
-    border: 1px solid var(--border);
-    border-radius: 5px;
-    padding: 4px 8px;
-    font-size: 14px;
-    backdrop-filter: blur(5px);
-  }
-  
-  .mode-toggle {
-    display: flex;
-    align-items: center;
-  }
-  
-  .toggle-switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-  }
-  
-  .toggle-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    border-radius: 20px;
-    transition: 0.4s;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 2px;
-    bottom: 2px;
-    background-color: white;
-    border-radius: 50%;
-    transition: 0.4s;
-  }
-  
-  .toggle-switch input:checked + .slider {
-    background-color: #4caf50;
-  }
-  
-  .toggle-switch input:checked + .slider:before {
-    transform: translateX(20px);
-  }
-  
-  .output {
-    min-height: 130px;
-    background: var(--input-bg);
-    padding: 12px;
-    margin-top: 40px;
-    margin-bottom: 12px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    white-space: pre-wrap;
-    overflow-y: auto;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--border);
-    background-color: var(--input-bg);
-    border-radius: 8px;
-    margin-bottom: 10px;
-    color: var(--text-color);
-    outline: none;
-    transition: 0.2s;
-  }
-  
-  input[type="text"]:focus {
-    box-shadow: 0 0 8px #007bff88;
-  }
-  
-  button {
-    width: 100%;
-    padding: 12px;
-    background: var(--btn-bg);
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-  }
-  
-  button:hover {
-    background: var(--btn-hover-bg);
-    transform: scale(1.02);
-  }
-  
+}
+
+body.dark-mode .chat-container {
+  background: #1e1e1e;
+  color: white;
+}
+
+body.dark-mode .output {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+}
+
+body.dark-mode input[type="text"] {
+  background-color: #333;
+  color: white;
+  border-color: #555;
+}
+
+body.dark-mode button {
+  background-color: #007bff;
+}
+
+body.dark-mode button:hover {
+  background-color: #0056b3;
+}
